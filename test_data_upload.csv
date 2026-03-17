@@ -1,0 +1,13 @@
+month,revenue,expenses,profit,category
+Jan,50000,30000,20000,Software
+Feb,55000,32000,23000,Hardware
+Mar,60000,35000,25000,Software
+Apr,58000,31000,27000,Services
+May,65000,38000,27000,Hardware
+Jun,70000,40000,30000,Software
+Jul,75000,42000,33000,Services
+Aug,80000,45000,35000,Hardware
+Sep,85000,48000,37000,Software
+Oct,90000,50000,40000,Services
+Nov,95000,55000,40000,Hardware
+Dec,100000,60000,40000,Software

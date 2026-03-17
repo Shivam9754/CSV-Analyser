@@ -1,0 +1,104 @@
+
+> conversational-bi@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.12
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.200:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling / ...
+
+
+Retrying 1/3...
+
+
+Retrying 2/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+ ✓ Compiled / in 9.7s (2912 modules)
+ GET / 200 in 10962ms
+ ○ Compiling /api/chat ...
+ ✓ Compiled /api/chat in 3.3s (2989 modules)
+ POST /api/chat 200 in 2673ms
+ ✓ Compiled in 2.2s (3003 modules)
+ POST /api/chat 200 in 2159ms
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/home/shivam/Documents/conversational-bi/project/app/page.tsx[0m:210:1]
+ [2m207[0m |       const { messages, append, status, error } = chatResult;
+ [2m208[0m |     
+ [2m209[0m |       // dummy comment 
+ [2m210[0m | [35;1m,[0m[35;1m-[0m[35;1m>[0m     api: '/api/chat',
+ [2m211[0m | [35;1m|[0m[35;1m-[0m[35;1m>[0m     body: { datasetSchema, sampleData },
+     : [35;1m`[0m[35;1m---[0m[33;1m        ^[0m
+     : [35;1m`[0m[35;1m---[0m[35;1m-[0m [35;1mThis is the expression part of an expression statement[0m
+ [2m212[0m |       })
+ [2m213[0m |     
+ [2m214[0m |       const isLoading = status === 'streaming' || status === 'submitted'
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 5.5s (1361 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1681ms (1543 modules)
+useChat keys: [
+  'id',
+  'messages',
+  'setMessages',
+  'sendMessage',
+  'regenerate',
+  'clearError',
+  'stop',
+  'error',
+  'resumeStream',
+  'status',
+  'addToolResult',
+  'addToolOutput',
+  'addToolApprovalResponse'
+]
+ GET / 200 in 3150ms
+ ✓ Compiled in 5.8s (2904 modules)
