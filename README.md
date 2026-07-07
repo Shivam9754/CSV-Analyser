@@ -122,3 +122,4 @@ npm start
 - **Zustand** — state management
 - **PapaParse** — CSV parsing
 - **Zod** — schema validation
+# Conversational-BI
