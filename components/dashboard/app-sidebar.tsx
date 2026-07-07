@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 import {
   MessageSquareText,
   Upload,
@@ -15,6 +16,7 @@ import {
   LogOut,
   ChevronUp,
   Box,
+  BarChart2,
 } from 'lucide-react'
 
 import {
@@ -40,7 +42,6 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { useSettings } from '@/contexts/settings-context'
 import { ProfileModal } from './profile-modal'
 import { SettingsModal } from './settings-modal'
-import { DropboxModal } from './dropbox-modal'
 
 const navigationKeys = [
   {
@@ -59,6 +60,11 @@ const navigationKeys = [
     icon: Lightbulb,
   },
   {
+    key: 'statistical_analysis',
+    href: '/statistical-analysis',
+    icon: BarChart2,
+  },
+  {
     key: 'query_history',
     href: '/history',
     icon: History,
@@ -71,10 +77,9 @@ export function AppSidebar() {
   const { t, profile } = useSettings()
   const [profileOpen, setProfileOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [dropboxOpen, setDropboxOpen] = useState(false)
 
   const handleLogout = () => {
-    router.push('/login')
+    signOut({ callbackUrl: '/login' })
   }
 
   return (
@@ -112,18 +117,6 @@ export function AppSidebar() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
-                
-                {/* Dropbox Button */}
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    onClick={() => setDropboxOpen(true)}
-                    tooltip="Dropbox"
-                    className="text-primary hover:text-primary"
-                  >
-                    <Box className="size-4" />
-                    <span>Dropbox</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
@@ -187,7 +180,6 @@ export function AppSidebar() {
       {/* Modals */}
       <ProfileModal open={profileOpen} onClose={() => setProfileOpen(false)} />
       <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
-      <DropboxModal open={dropboxOpen} onOpenChange={setDropboxOpen} />
     </>
   )
 }

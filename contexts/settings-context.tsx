@@ -1,6 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 export interface UserProfile {
   firstName: string
@@ -438,6 +439,51 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfileState] = useState<UserProfile>(defaultProfile)
   const [language, setLanguageState] = useState<Language>('en')
   const [accentColor, setAccentColorState] = useState<AccentColor>('blue')
+
+  const { data: session } = useSession()
+
+  // Sync profile state with Next-Auth session when it changes
+  useEffect(() => {
+    if (session?.user) {
+      const email = session.user.email || ""
+      const fullName = session.user.name || ""
+      const [first = "", ...lasts] = fullName.split(" ")
+      const last = lasts.join(" ")
+      
+      let mappedRegion = "asia"
+      if (session.user.country) {
+        const countryLower = session.user.country.toLowerCase()
+        if (
+          countryLower.includes("us") || 
+          countryLower.includes("united states") || 
+          countryLower.includes("america")
+        ) {
+          mappedRegion = "americas"
+        } else if (
+          countryLower.includes("europe") || 
+          countryLower.includes("uk") || 
+          countryLower.includes("germany") || 
+          countryLower.includes("france")
+        ) {
+          mappedRegion = "europe"
+        } else if (countryLower.includes("east")) {
+          mappedRegion = "middle-east"
+        } else if (countryLower.includes("africa")) {
+          mappedRegion = "africa"
+        } else {
+          mappedRegion = "asia"
+        }
+      }
+
+      setProfileState({
+        firstName: first || "User",
+        lastName: last || "",
+        emailId: email || "user@example.com",
+        phoneNo: session.user.phone || "",
+        region: mappedRegion,
+      })
+    }
+  }, [session])
 
   // Load from localStorage
   useEffect(() => {

@@ -6,11 +6,12 @@ import Papa from 'papaparse'
 import {
   ArrowRight, Database, FileSpreadsheet, Trash2, CheckCircle2,
   Calendar, Hash, Type, Clock, FolderOpen,
-  BarChart3, Eye, X, AlertCircle,
+  BarChart3, Eye, X, AlertCircle, Box,
 } from 'lucide-react'
 import { DashboardLayout } from '@/components/dashboard/dashboard-layout'
 import { FileUpload } from '@/components/dashboard/file-upload'
 import { DataPreview } from '@/components/dashboard/data-preview'
+import { DropboxModal } from '@/components/dashboard/dropbox-modal'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -50,6 +51,7 @@ export default function UploadPage() {
   const [progress, setProgress] = useState(0)
   const [parsedData, setParsedData] = useState<{ columns: DataColumn[]; data: Record<string,unknown>[]; fileName: string; fileSize: number } | null>(null)
   const [previewDataset, setPreviewDataset] = useState<Dataset | null>(null)
+  const [isDropboxOpen, setIsDropboxOpen] = useState(false)
 
   const handleFileSelect = useCallback((file: File) => {
     setIsProcessing(true); setProgress(0); setParsedData(null)
@@ -111,6 +113,20 @@ export default function UploadPage() {
                   isUploading={isProcessing} 
                   uploadProgress={progress} 
                 />
+                
+                <div className="relative mt-6 mb-4">
+                  <div className="absolute inset-0 flex items-center"><span className="w-full border-t" /></div>
+                  <div className="relative flex justify-center text-xs uppercase"><span className="bg-background px-2 text-muted-foreground">Or</span></div>
+                </div>
+                
+                <Button
+                  variant="outline"
+                  className="w-full gap-2 border-dashed border-[#0061FF]/20 hover:border-[#0061FF]/50 hover:bg-[#0061FF]/5 text-[#0061FF]"
+                  onClick={() => setIsDropboxOpen(true)}
+                >
+                  <Box className="size-4" />
+                  Import from Dropbox
+                </Button>
               </CardContent>
             </Card>
 
@@ -235,6 +251,7 @@ export default function UploadPage() {
           </div>
         </div>
       </div>
+      <DropboxModal open={isDropboxOpen} onOpenChange={setIsDropboxOpen} />
     </DashboardLayout>
   )
 }

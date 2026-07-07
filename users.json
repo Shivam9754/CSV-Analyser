@@ -1,0 +1,10 @@
+[
+  {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "$2b$10$hmWNuFvMOuUbTHdG2KaR1eGh1n3FiJbo5IAcSSl6w1n5SEbMBU4Xy",
+    "country": "United States",
+    "phone": "+1-555-0199",
+    "id": "le0f11biffa"
+  }
+]
